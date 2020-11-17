@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[34,)"
+license="APACHE-2.0"
+issueTrackerURL="https://github.com/noeppi-noeppi/NextChristmas/issues"
+
+[[mods]]
+modId="next_christmas"
+version="${file.jarVersion}"
+displayName="NextChristmas"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/next-christmas"
+authors="noeppi_noeppi"
+description='''
+A christmas mode made for WinterJam 2020
+'''
+
+[[dependencies.next_christmas]]
+    modId="forge"
+    mandatory=true
+    versionRange="[34,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.next_christmas]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.3,)"
+    ordering="NONE"
+    side="BOTH"
+
