@@ -5,6 +5,8 @@ import io.github.noeppi_noeppi.mods.nextchristmas.data.DataGenerators;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.Reindeer;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.ReindeerRender;
 import io.github.noeppi_noeppi.mods.nextchristmas.network.NextNetwork;
+import io.github.noeppi_noeppi.mods.nextchristmas.oven.ScreenOven;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -15,6 +17,7 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -48,6 +51,14 @@ public class NextChristmas extends ModXRegistration {
         this.addRegistrationHandler(ModItems::register);
         this.addRegistrationHandler(ModEntities::register);
         this.addRegistrationHandler(ModWorldGen::register);
+        this.addRegistrationHandler(ModRecipes::register);
+
+        DistExecutor.unsafeRunForDist(() -> () -> {
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(ModModels::registerModels);
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(ModModels::bakeModels);
+            this.addRegistrationHandler(ModModels::register);
+            return null;
+        }, () -> () -> null);
     }
 
     @Override
