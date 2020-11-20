@@ -21,6 +21,9 @@ public class ScreenOven extends ContainerScreen<ContainerOven> {
     @Override
     protected void drawGuiContainerBackgroundLayer(@Nonnull MatrixStack matrixStack, float partialTicks, int x, int y) {
         RenderHelper.resetColor();
+        this.renderBackground(matrixStack);
+
+        RenderHelper.resetColor();
         //noinspection ConstantConditions
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
         this.blit(matrixStack, (this.width - this.xSize) / 2, (this.height - this.ySize) / 2, 0, 0, this.xSize, this.ySize);

@@ -20,7 +20,7 @@ public class ModModels {
         registerModel(RenderOven.DOOR_MODEL);
     }
 
-    private static void registerModel(ResourceLocation location) {
+    public static void registerModel(ResourceLocation location) {
         if (!models.containsKey(location)) {
             models.put(location, null);
         }

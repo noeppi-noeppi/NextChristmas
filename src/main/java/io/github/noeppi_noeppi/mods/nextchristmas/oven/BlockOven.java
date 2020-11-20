@@ -4,6 +4,7 @@ import io.github.noeppi_noeppi.libx.block.DirectionShape;
 import io.github.noeppi_noeppi.libx.mod.ModX;
 import io.github.noeppi_noeppi.libx.mod.registration.BlockGUI;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModBlocks;
+import io.github.noeppi_noeppi.mods.nextchristmas.util.ItemStackRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.ScreenManager;
@@ -40,11 +41,11 @@ public class BlockOven extends BlockGUI<TileOven, ContainerOven> {
     ));
 
     public BlockOven(ModX mod, Class<TileOven> teClass, ContainerType<ContainerOven> container, Properties properties) {
-        super(mod, teClass, container, properties);
+        super(mod, teClass, container, properties, new Item.Properties().setISTER(() -> () -> ItemStackRenderer.INSTANCE));
     }
 
     public BlockOven(ModX mod, Class<TileOven> teClass, ContainerType<ContainerOven> container, Properties properties, Item.Properties itemProperties) {
-        super(mod, teClass, container, properties, itemProperties);
+        super(mod, teClass, container, properties, itemProperties.setISTER(() -> () -> ItemStackRenderer.INSTANCE));
     }
 
     @Override
@@ -52,6 +53,7 @@ public class BlockOven extends BlockGUI<TileOven, ContainerOven> {
         RenderTypeLookup.setRenderLayer(this, RenderType.getCutout());
         ScreenManager.registerFactory(this.container, ScreenOven::new);
         ClientRegistry.bindTileEntityRenderer(this.getTileType(), RenderOven::new);
+        ItemStackRenderer.addRenderTile(this.getTileType());
     }
 
     @Nullable

@@ -8,6 +8,7 @@ import io.github.noeppi_noeppi.mods.nextchristmas.ModRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -90,6 +91,15 @@ public class TileOven extends TileEntityBase implements ITickableTileEntity {
             if (this.fuelTicks <= 0 && (this.recipe1 != null || this.recipe2 != null) && !this.handler.getStackInSlot(SLOT_FUEL).isEmpty()) {
                 this.fuelTicksMax = Math.max(0, ForgeHooks.getBurnTime(this.handler.getStackInSlot(SLOT_FUEL)));
                 this.fuelTicks = this.fuelTicksMax;
+                if (this.fuelTicksMax > 0) {
+                    ItemStack fuelStack = this.handler.getStackInSlot(SLOT_FUEL);
+                    if (fuelStack.getItem() == Items.LAVA_BUCKET) {
+                        fuelStack = new ItemStack(Items.BUCKET);
+                    } else {
+                        fuelStack.shrink(1);
+                    }
+                    this.handler.setStackInSlot(SLOT_FUEL, fuelStack);
+                }
             }
 
             boolean needsRecipeUpdate = false;
@@ -104,6 +114,8 @@ public class TileOven extends TileEntityBase implements ITickableTileEntity {
                 } else if (this.fuelTicks > 0) {
                     this.cooking1 += 1;
                 }
+            } else {
+                this.cooking1 = 0;
             }
 
             if (this.recipe2 != null) {
@@ -116,6 +128,8 @@ public class TileOven extends TileEntityBase implements ITickableTileEntity {
                 } else if (this.fuelTicks > 0) {
                     this.cooking2 += 1;
                 }
+            } else {
+                this.cooking2 = 0;
             }
 
             if (needsRecipeUpdate) {
