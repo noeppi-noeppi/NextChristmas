@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "next_christmas:vanilla_crescent_baked_sheet"
+    }
+  ],
+  "result": {
+    "item": "next_christmas:vanilla_crescent",
+    "count": 6
+  }
+}

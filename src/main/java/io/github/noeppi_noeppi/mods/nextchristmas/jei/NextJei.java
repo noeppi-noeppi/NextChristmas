@@ -37,7 +37,8 @@ public class NextJei implements IModPlugin {
     @Override
     public void registerCategories(@Nonnull IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(
-                new OvenCategory(registration.getJeiHelpers().getGuiHelper())
+                new OvenCategory(registration.getJeiHelpers().getGuiHelper()),
+                new MillCategory(registration.getJeiHelpers().getGuiHelper())
         );
     }
 
@@ -47,6 +48,7 @@ public class NextJei implements IModPlugin {
         RecipeManager rm = Objects.requireNonNull(world).getRecipeManager();
 
         registration.addRecipes(rm.getRecipesForType(ModRecipes.OVEN), OvenCategory.ID);
+        registration.addRecipes(rm.getRecipesForType(ModRecipes.MILL), MillCategory.ID);
     }
 
     @Override
@@ -57,7 +59,8 @@ public class NextJei implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(@Nonnull IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.oven));
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.oven), OvenCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.grainMill), MillCategory.ID);
     }
 
     @Override

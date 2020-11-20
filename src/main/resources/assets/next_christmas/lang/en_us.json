@@ -1,4 +1,21 @@
 {
-  "jei.next_christmas.category.oven": "Baking Recipes"
+  "item.next_christmas.reindeer_spawn_egg": "Reindeer Spawn Egg",
+  "item.next_christmas.flour": "Flour",
+  "item.next_christmas.vanilla_fruits": "Vanilla Fruits",
+  "item.next_christmas.vanilla": "Vanilla",
+
+  "block.next_christmas.oven": "Oven",
+  "block.next_christmas.grain_mill": "Grain Mill",
+  "block.next_christmas.baking_sheet": "Baking Sheet",
+
+  "screen.next_christmas.oven": "Oven",
+
+  "jei.next_christmas.category.oven": "Baking Recipes",
+  "jei.next_christmas.category.mill": "Grain Mill Recipes",
+
+  "item.next_christmas.vanilla_crescent": "Vanilla Crescent",
+  "item.next_christmas.vanilla_crescent_dough": "Vanilla Crescent Dough",
+  "block.next_christmas.vanilla_crescent_baked_sheet": "Sheet of Baked Vanilla Crescent",
+  "block.next_christmas.vanilla_crescent_dough_sheet": "Sheet of Vanilla Crescent Dough"
 }
 

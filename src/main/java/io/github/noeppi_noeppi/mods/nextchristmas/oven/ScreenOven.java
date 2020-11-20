@@ -19,10 +19,14 @@ public class ScreenOven extends ContainerScreen<ContainerOven> {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(@Nonnull MatrixStack matrixStack, float partialTicks, int x, int y) {
-        RenderHelper.resetColor();
-        this.renderBackground(matrixStack);
+    public void render(@Nonnull MatrixStack ms, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(ms);
+        super.render(ms, mouseX, mouseY, partialTicks);
+        this.renderHoveredTooltip(ms, mouseX, mouseY);
+    }
 
+    @Override
+    protected void drawGuiContainerBackgroundLayer(@Nonnull MatrixStack matrixStack, float partialTicks, int x, int y) {
         RenderHelper.resetColor();
         //noinspection ConstantConditions
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);

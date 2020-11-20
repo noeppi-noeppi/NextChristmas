@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "next_christmas:block/baking_sheet"
+    },
+    "facing=south": {
+      "model": "next_christmas:block/baking_sheet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "next_christmas:block/baking_sheet",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "next_christmas:block/baking_sheet",
+      "y": 90
+    }
+  }
+}

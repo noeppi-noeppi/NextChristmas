@@ -2,20 +2,20 @@ package io.github.noeppi_noeppi.mods.nextchristmas.biscuit;
 
 import io.github.noeppi_noeppi.libx.block.DirectionShape;
 import io.github.noeppi_noeppi.libx.mod.ModX;
+import io.github.noeppi_noeppi.libx.mod.registration.BlockBase;
 import io.github.noeppi_noeppi.libx.mod.registration.BlockTE;
 import io.github.noeppi_noeppi.libx.mod.registration.TileEntityBase;
-import io.github.noeppi_noeppi.mods.nextchristmas.ModModels;
+import io.github.noeppi_noeppi.mods.nextchristmas.ModBlocks;
 import io.github.noeppi_noeppi.mods.nextchristmas.util.ItemStackRenderer;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.IItemProvider;
@@ -25,17 +25,15 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
 
 public class BlockBakingSheet extends BlockTE<TileEntityBase> {
 
     private final ItemStack fillStack;
-    private final ResourceLocation fillModel;
     private final boolean big;
 
     private static final DirectionShape shape = new DirectionShape(VoxelShapes.or(
@@ -45,45 +43,28 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
             makeCuboidShape(13.5, 0, 4, 14, 0.75, 13.5)
     ));
 
-    public BlockBakingSheet(ModX mod, IItemProvider fillStack, boolean big, Properties properties) {
-        this(mod, new ItemStack(fillStack), big, properties);
+    public BlockBakingSheet(ModX mod, IItemProvider fillStack, boolean big) {
+        this(mod, new ItemStack(fillStack), big);
     }
 
-    public BlockBakingSheet(ModX mod, ItemStack fillStack, boolean big, Properties properties) {
-        this(mod, fillStack, big, properties, new Item.Properties());
+    public BlockBakingSheet(ModX mod, ItemStack fillStack, boolean big) {
+        this(mod, fillStack, big, new Item.Properties());
     }
 
-    public BlockBakingSheet(ModX mod, IItemProvider fillStack, boolean big, Properties properties, Item.Properties itemProperties) {
-        this(mod, new ItemStack(fillStack), big, properties, itemProperties);
+    public BlockBakingSheet(ModX mod, IItemProvider fillStack, boolean big, Item.Properties itemProperties) {
+        this(mod, new ItemStack(fillStack), big, itemProperties);
     }
 
-    public BlockBakingSheet(ModX mod, ItemStack fillStack, boolean big, Properties properties, Item.Properties itemProperties) {
-        super(mod, TileEntityBase.class, properties, itemProperties.setISTER(() -> () -> ItemStackRenderer.INSTANCE).maxStackSize(1));
+    public BlockBakingSheet(ModX mod, ItemStack fillStack, boolean big, Item.Properties itemProperties) {
+        super(mod, TileEntityBase.class, AbstractBlock.Properties.create(Material.IRON), withContainerAndRender(!fillStack.isEmpty(), itemProperties.maxStackSize(1)));
         this.fillStack = fillStack;
-        this.fillModel = null;
         this.big = big;
-    }
-
-    public BlockBakingSheet(ModX mod, ResourceLocation fillModel, boolean big, Properties properties) {
-        this(mod, fillModel, big, properties, new Item.Properties());
-    }
-
-    public BlockBakingSheet(ModX mod, ResourceLocation fillModel, boolean big, Properties properties, Item.Properties itemProperties) {
-        super(mod, TileEntityBase.class, properties, itemProperties.setISTER(() -> () -> ItemStackRenderer.INSTANCE).maxStackSize(1));
-        this.fillStack = new ItemStack(Items.BARRIER);
-        this.fillModel = fillModel;
-        this.big = big;
-
-        DistExecutor.unsafeRunForDist(() -> () -> {
-            ModModels.registerModel(this.fillModel);
-            return null;
-        }, () -> () -> null);
     }
 
     @Override
     public void registerClient(ResourceLocation id) {
         RenderTypeLookup.setRenderLayer(this, RenderType.getCutout());
-        if (this.fillModel != null || !this.fillStack.isEmpty()) {
+        if (!this.fillStack.isEmpty()) {
             ClientRegistry.bindTileEntityRenderer(this.getTileType(), dispatcher -> new RenderBakingSheet(dispatcher, this));
             ItemStackRenderer.addRenderTile(this.getTileType());
         }
@@ -111,11 +92,23 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
         return this.fillStack;
     }
 
-    public IBakedModel getFillModel(@Nullable World world) {
-        return this.fillModel != null ? ModModels.getModel(this.fillModel) : Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(this.fillStack, world, null);
-    }
-
     public boolean isBig() {
         return this.big;
+    }
+
+    private static Item.Properties withContainerAndRender(boolean addContainer, Item.Properties properties) {
+        if (addContainer) {
+            Item container;
+            try {
+                Field field = BlockBase.class.getDeclaredField("item");
+                field.setAccessible(true);
+                container = (Item) field.get(ModBlocks.bakingSheet);
+            } catch (ReflectiveOperationException e) {
+                throw new IllegalStateException("Could not access ItemBase#item via reflection to set baking sheet container item.", e);
+            }
+            return properties.containerItem(container).setISTER(() -> () -> ItemStackRenderer.INSTANCE);
+        } else {
+            return properties;
+        }
     }
 }

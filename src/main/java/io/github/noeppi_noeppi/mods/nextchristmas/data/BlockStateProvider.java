@@ -22,6 +22,7 @@ public class BlockStateProvider extends BlockStateProviderBase {
     @Override
     protected void setup() {
         this.manualModel(ModBlocks.oven);
+        this.manualModel(ModBlocks.grainMill);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package io.github.noeppi_noeppi.mods.nextchristmas;
 
+import io.github.noeppi_noeppi.mods.nextchristmas.mill.RenderMill;
 import io.github.noeppi_noeppi.mods.nextchristmas.oven.RenderOven;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.util.ResourceLocation;
@@ -18,9 +19,10 @@ public class ModModels {
 
     public static void register() {
         registerModel(RenderOven.DOOR_MODEL);
+        registerModel(RenderMill.CRANK_MODEL);
     }
 
-    public static void registerModel(ResourceLocation location) {
+    private static void registerModel(ResourceLocation location) {
         if (!models.containsKey(location)) {
             models.put(location, null);
         }

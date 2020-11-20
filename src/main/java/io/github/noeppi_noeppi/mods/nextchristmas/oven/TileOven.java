@@ -69,7 +69,7 @@ public class TileOven extends TileEntityBase implements ITickableTileEntity {
 
         this.handler.setInputSlots(SLOT_FUEL, SLOT_IN1, SLOT_IN2);
 
-        this.cap = ItemStackHandlerWrapper.create(this.handler, slot -> true, (slot, stack) -> slot == SLOT_FUEL || slot == SLOT_IN1 && this.handler.getStackInSlot(SLOT_OUT1).isEmpty() || slot == SLOT_IN2 && this.handler.getStackInSlot(SLOT_OUT2).isEmpty());
+        this.cap = ItemStackHandlerWrapper.create(this.handler, slot -> slot == SLOT_OUT1 || slot == SLOT_OUT2, (slot, stack) -> slot == SLOT_FUEL || slot == SLOT_IN1 && this.handler.getStackInSlot(SLOT_OUT1).isEmpty() || slot == SLOT_IN2 && this.handler.getStackInSlot(SLOT_OUT2).isEmpty());
     }
 
     @Override
@@ -289,5 +289,11 @@ public class TileOven extends TileEntityBase implements ITickableTileEntity {
 
     public int getPlayersWatching() {
         return this.playersWatching;
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        this.updateRecipes();
     }
 }

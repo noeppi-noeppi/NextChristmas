@@ -52,6 +52,7 @@ public class NextChristmas extends ModXRegistration {
         this.addRegistrationHandler(ModEntities::register);
         this.addRegistrationHandler(ModWorldGen::register);
         this.addRegistrationHandler(ModRecipes::register);
+        this.addRegistrationHandler(LootModifier::register);
 
         DistExecutor.unsafeRunForDist(() -> () -> {
             FMLJavaModLoadingContext.get().getModEventBus().addListener(ModModels::registerModels);
