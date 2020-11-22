@@ -5,14 +5,10 @@ import io.github.noeppi_noeppi.mods.nextchristmas.data.DataGenerators;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.Reindeer;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.ReindeerRender;
 import io.github.noeppi_noeppi.mods.nextchristmas.network.NextNetwork;
-import io.github.noeppi_noeppi.mods.nextchristmas.oven.ScreenOven;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.Heightmap;
@@ -25,7 +21,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import javax.annotation.Nonnull;
-import java.util.Collections;
 
 @Mod("next_christmas")
 public class NextChristmas extends ModXRegistration {
@@ -38,7 +33,7 @@ public class NextChristmas extends ModXRegistration {
             @Nonnull
             @Override
             public ItemStack createIcon() {
-                return new ItemStack(Items.BARRIER);
+                return new ItemStack(ModBlocks.star);
             }
         });
 

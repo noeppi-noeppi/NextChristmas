@@ -1,0 +1,6 @@
+{
+  "parent": "next_christmas:block/base/candle",
+  "textures": {
+    "color": "minecraft:block/light_blue_concrete"
+  }
+}

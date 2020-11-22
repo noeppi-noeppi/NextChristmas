@@ -2,6 +2,8 @@ package io.github.noeppi_noeppi.mods.nextchristmas.util;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -59,9 +61,11 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
                             matrixStack.translate(-0.5, 0, -0.5);
                         }
 
-
-                        //noinspection deprecation
-                        Minecraft.getInstance().getBlockRendererDispatcher().renderBlock(block.getDefaultState(), matrixStack, buffer, light, overlay);
+                        BlockState state = block.getDefaultState();
+                        if (state.getRenderType() != BlockRenderType.ENTITYBLOCK_ANIMATED) {
+                            //noinspection deprecation
+                            Minecraft.getInstance().getBlockRendererDispatcher().renderBlock(block.getDefaultState(), matrixStack, buffer, light, overlay);
+                        }
                         renderer.render(tile, Minecraft.getInstance().getRenderPartialTicks(), matrixStack, buffer, light, overlay);
 
                         matrixStack.pop();

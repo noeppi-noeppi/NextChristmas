@@ -3,6 +3,7 @@ package io.github.noeppi_noeppi.mods.nextchristmas.biome;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import io.github.noeppi_noeppi.libx.mod.registration.Registerable;
+import io.github.noeppi_noeppi.mods.nextchristmas.ModBlocks;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModWorldGen;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -109,24 +110,24 @@ public class ChristmasTree extends Tree implements Registerable {
         private void plantTree(@Nonnull ISeedReader world, @Nonnull ChunkGenerator generator, @Nonnull Random random, @Nonnull BlockPos pos, int size) {
             switch (size) {
                 case 0:
-                    this.placeLayer(world, pos.up(1), random, 2);
-                    this.placeLayer(world, pos.up(2), random, 0);
-                    this.placeStem(world, pos, random, 4);
+                    this.placeLayer(world, pos.up(2), random, 2);
+                    this.placeLayer(world, pos.up(3), random, 0);
+                    this.placeStem(world, pos, random, 5);
                     break;
                 case 1:
-                    this.placeLayer(world, pos.up(1), random, 3);
-                    this.placeLayer(world, pos.up(2), random, 2);
-                    this.placeLayer(world, pos.up(3), random, 1);
-                    this.placeLayer(world, pos.up(4), random, 0);
-                    this.placeStem(world, pos, random, 6);
+                    this.placeLayer(world, pos.up(2), random, 3);
+                    this.placeLayer(world, pos.up(3), random, 2);
+                    this.placeLayer(world, pos.up(4), random, 1);
+                    this.placeLayer(world, pos.up(5), random, 0);
+                    this.placeStem(world, pos, random, 7);
                 case 2:
                 default:
-                    this.placeLayer(world, pos.up(2), random, 4);
-                    this.placeLayer(world, pos.up(3), random, 3);
-                    this.placeLayer(world, pos.up(4), random, 2);
-                    this.placeLayer(world, pos.up(5), random, 1);
-                    this.placeLayer(world, pos.up(6), random, 0);
-                    this.placeStem(world, pos, random, 8);
+                    this.placeLayer(world, pos.up(3), random, 4);
+                    this.placeLayer(world, pos.up(4), random, 3);
+                    this.placeLayer(world, pos.up(5), random, 2);
+                    this.placeLayer(world, pos.up(6), random, 1);
+                    this.placeLayer(world, pos.up(7), random, 0);
+                    this.placeStem(world, pos, random, 9);
                     break;
             }
         }
@@ -151,6 +152,9 @@ public class ChristmasTree extends Tree implements Registerable {
                     this.placeLeaves(world, basePos.add(0, 1, 1), random);
                     this.placeLeaves(world, basePos.add(0, 2, 0), random);
                     this.placeLeaves(world, basePos.add(0, 3, 0), random);
+                    if (random.nextInt(500) == 0) {
+                        world.setBlockState(basePos.up(4), ModBlocks.star.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, random.nextBoolean() ? Direction.NORTH : Direction.WEST), 2);
+                    }
                     break;
                 case 1:
                     this.placeLeaves(world, basePos.add(-1, 0, -1), random);
@@ -213,6 +217,13 @@ public class ChristmasTree extends Tree implements Registerable {
             world.setBlockState(basePos, state, 2);
             if (random.nextInt(2) == 0) {
                 world.setBlockState(basePos.up(), snow, 2);
+            }
+            //noinspection deprecation
+            if (world.getBlockState(basePos.down()).isAir() && random.nextInt(10) == 0) {
+                world.setBlockState(basePos.down(), ModBlocks.christmasBall.random(random).getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, random.nextBoolean() ? Direction.NORTH : Direction.WEST), 2);
+            }
+            if (random.nextInt(10) == 0) {
+                world.setBlockState(basePos.up(), ModBlocks.candle.random(random).getDefaultState().with(BlockStateProperties.LIT, true), 2);
             }
         }
     }

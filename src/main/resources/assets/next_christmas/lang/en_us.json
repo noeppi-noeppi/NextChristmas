@@ -7,6 +7,11 @@
   "block.next_christmas.oven": "Oven",
   "block.next_christmas.grain_mill": "Grain Mill",
   "block.next_christmas.baking_sheet": "Baking Sheet",
+  "block.next_christmas.christmas_ball": "Christmas Tree Ball",
+  "block.next_christmas.candle": "Candle",
+  "block.next_christmas.star": "Magical Star",
+
+  "entity.next_christmas.reindeer": "Reindeer",
 
   "screen.next_christmas.oven": "Oven",
 

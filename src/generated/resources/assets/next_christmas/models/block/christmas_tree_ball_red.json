@@ -1,0 +1,6 @@
+{
+  "parent": "next_christmas:block/base/christmas_tree_ball",
+  "textures": {
+    "color": "minecraft:block/red_glazed_terracotta"
+  }
+}

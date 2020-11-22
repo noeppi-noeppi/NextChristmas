@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s",
+    "h",
+    "i"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    },
+    "h": {
+      "item": "minecraft:honeycomb"
+    },
+    "i": {
+      "tag": "forge:dyes/brown"
+    }
+  },
+  "result": {
+    "item": "next_christmas:candle_brown"
+  }
+}
