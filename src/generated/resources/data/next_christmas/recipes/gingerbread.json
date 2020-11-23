@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "next_christmas:gingerbread_baked_sheet"
+    }
+  ],
+  "result": {
+    "item": "next_christmas:gingerbread",
+    "count": 6
+  }
+}

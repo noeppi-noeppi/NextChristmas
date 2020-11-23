@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "c c",
+    "cac",
+    "cbc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:black_wool"
+    },
+    "b": {
+      "item": "minecraft:brown_wool"
+    },
+    "c": {
+      "item": "minecraft:red_wool"
+    }
+  },
+  "result": {
+    "item": "next_christmas:sweater_reindeer"
+  }
+}

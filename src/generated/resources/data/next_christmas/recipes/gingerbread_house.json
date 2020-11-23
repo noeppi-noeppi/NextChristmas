@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " g ",
+    "gsg",
+    "ggg"
+  ],
+  "key": {
+    "g": {
+      "item": "next_christmas:gingerbread"
+    },
+    "s": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "result": {
+    "item": "next_christmas:gingerbread_house"
+  }
+}

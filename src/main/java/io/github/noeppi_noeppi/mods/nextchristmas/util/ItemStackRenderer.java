@@ -31,6 +31,10 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
     private static final List<TileEntityType<?>> types = new LinkedList<>();
     private static final Map<TileEntityType<?>, LazyValue<TileEntity>> tiles = new HashMap<>();
 
+    private ItemStackRenderer() {
+        super();
+    }
+
     public static <T extends TileEntity> void addRenderTile(TileEntityType<T> teType) {
         types.add(teType);
         tiles.put(teType, new LazyValue<>(teType::create));

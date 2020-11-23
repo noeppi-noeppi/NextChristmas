@@ -3,8 +3,8 @@ package io.github.noeppi_noeppi.mods.nextchristmas;
 import com.google.gson.JsonObject;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.conditions.ILootCondition;
@@ -28,6 +28,10 @@ public class LootModifier extends net.minecraftforge.common.loot.LootModifier {
         if ((state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.TALL_GRASS) && generatedLoot.isEmpty()) {
             if (context.getRandom().nextInt(50) == 0) {
                 generatedLoot.add(new ItemStack(ModItems.vanillaFruits, context.getRandom().nextInt(3) + 1));
+            }
+        } else if (state.getBlock() == Blocks.DARK_OAK_LEAVES && generatedLoot.stream().noneMatch(stack -> stack.getItem() == Items.DARK_OAK_LEAVES)) {
+            if (context.getRandom().nextInt(100) == 0) {
+                generatedLoot.add(new ItemStack(ModItems.hazelnut));
             }
         }
         return generatedLoot;

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "next_christmas:flour"
+    },
+    {
+      "item": "next_christmas:flour"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "next_christmas:vanilla"
+    },
+    {
+      "item": "next_christmas:vanilla"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "item": "next_christmas:vanilla_crescent_dough",
+    "count": 8
+  }
+}

@@ -99,8 +99,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
     compile fg.deobf("io.github.noeppi_noeppi.mods:LibX:${mc_version}-${libx_version}")
+
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
     runtimeOnly fg.deobf("de.melanx.recipeprinter:recipeprinter-${mc_version}:${recipeprinter_version}")
 }
 

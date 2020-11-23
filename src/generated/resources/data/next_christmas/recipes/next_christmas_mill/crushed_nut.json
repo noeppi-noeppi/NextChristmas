@@ -1,0 +1,10 @@
+{
+  "type": "next_christmas:next_christmas_mill",
+  "output": {
+    "item": "next_christmas:crushed_nut"
+  },
+  "input": {
+    "item": "next_christmas:hazelnut"
+  },
+  "millClicks": 2
+}

@@ -2,6 +2,7 @@ package io.github.noeppi_noeppi.mods.nextchristmas;
 
 import io.github.noeppi_noeppi.mods.nextchristmas.mill.RenderMill;
 import io.github.noeppi_noeppi.mods.nextchristmas.oven.RenderOven;
+import io.github.noeppi_noeppi.mods.nextchristmas.player.RenderSantaHat;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -20,6 +21,8 @@ public class ModModels {
     public static void register() {
         registerModel(RenderOven.DOOR_MODEL);
         registerModel(RenderMill.CRANK_MODEL);
+        registerModel(RenderSantaHat.HAT_MODEL);
+        registerModel(RenderSantaHat.ITEM_MODEL);
     }
 
     private static void registerModel(ResourceLocation location) {

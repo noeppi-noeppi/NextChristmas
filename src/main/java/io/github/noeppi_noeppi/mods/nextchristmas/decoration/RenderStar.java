@@ -26,18 +26,18 @@ public class RenderStar extends HorizontalRotatedTesr<TileEntityBase> {
     }
 
     @Override
-    protected void doRender(@Nonnull TileEntityBase tileEntity, float partialTicks, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer buffer, int light, int overlay) {
+    protected void doRender(@Nonnull TileEntityBase tile, float partialTicks, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer buffer, int light, int overlay) {
         matrixStack.push();
         matrixStack.translate(0.5, 1, 0);
-        matrixStack.rotate(Vector3f.ZP.rotationDegrees((float) (10 * Math.sin((ClientTickHandler.ticksInGame + partialTicks) / 29))));
+        matrixStack.rotate(Vector3f.ZP.rotationDegrees((float) (10 * Math.sin(tile.getPos().getX() + (0.78237825 * tile.getPos().getZ()) + (1.18508472 * tile.getPos().getZ()) + (ClientTickHandler.ticksInGame + partialTicks) / 29))));
         matrixStack.translate(-0.5, -1, 0);
 
-        int color1 = Color.HSBtoRGB((44 + (10 * (float) Math.sin((ClientTickHandler.ticksInGame + partialTicks) / 19))) / 360f, 93/100f, 97/100f);
+        int color1 = Color.HSBtoRGB((44 + (10 * (float) Math.sin(tile.getPos().getZ() + (0.97234293 * tile.getPos().getX()) + (1.06225672 * tile.getPos().getZ()) + (ClientTickHandler.ticksInGame + partialTicks) / 19))) / 360f, 93/100f, 97/100f);
         float r1 = (color1 >>> 16 & 255) / 255f;
         float g1 = (color1 >>> 8 & 255) / 255f;
         float b1 = (color1 & 255) / 255f;
 
-        int color2 = Color.HSBtoRGB((44 + (10 * (float) -Math.sin((ClientTickHandler.ticksInGame + partialTicks) / 19))) / 360f, 93/100f, 97/100f);
+        int color2 = Color.HSBtoRGB((44 + (10 * (float) -Math.sin(tile.getPos().getZ() + (0.97234293 * tile.getPos().getX()) + (1.06225672 * tile.getPos().getZ()) + (ClientTickHandler.ticksInGame + partialTicks) / 19))) / 360f, 93/100f, 97/100f);
         float r2 = (color2 >>> 16 & 255) / 255f;
         float g2 = (color2 >>> 8 & 255) / 255f;
         float b2 = (color2 & 255) / 255f;

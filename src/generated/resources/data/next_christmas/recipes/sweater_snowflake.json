@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "c c",
+    "cac",
+    "cbc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:white_wool"
+    },
+    "b": {
+      "item": "minecraft:green_wool"
+    },
+    "c": {
+      "item": "minecraft:green_wool"
+    }
+  },
+  "result": {
+    "item": "next_christmas:sweater_snowflake"
+  }
+}
