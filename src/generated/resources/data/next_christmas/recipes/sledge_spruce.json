@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ppp",
+    "sse",
+    "eee"
+  ],
+  "key": {
+    "p": {
+      "item": "minecraft:spruce_planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "e": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "next_christmas:sledge_spruce"
+  }
+}

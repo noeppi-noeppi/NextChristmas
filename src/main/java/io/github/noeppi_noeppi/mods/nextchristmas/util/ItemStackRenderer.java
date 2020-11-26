@@ -56,14 +56,7 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
 
                         matrixStack.push();
 
-                        if (type == ItemCameraTransforms.TransformType.GUI || type == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND
-                                || type == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND
-                                || type == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND
-                                || type == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-                            matrixStack.translate(0.5, 0, 0.5);
-                            matrixStack.rotate(Vector3f.YP.rotationDegrees(180));
-                            matrixStack.translate(-0.5, 0, -0.5);
-                        }
+                        rotateView(matrixStack, type);
 
                         BlockState state = block.getDefaultState();
                         if (state.getRenderType() != BlockRenderType.ENTITYBLOCK_ANIMATED) {
@@ -78,6 +71,17 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
                     }
                 }
             }
+        }
+    }
+
+    public static void rotateView(MatrixStack matrixStack, ItemCameraTransforms.TransformType type) {
+        if (type == ItemCameraTransforms.TransformType.GUI || type == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND
+                || type == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND
+                || type == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND
+                || type == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
+            matrixStack.translate(0.5, 0, 0.5);
+            matrixStack.rotate(Vector3f.YP.rotationDegrees(180));
+            matrixStack.translate(-0.5, 0, -0.5);
         }
     }
 }

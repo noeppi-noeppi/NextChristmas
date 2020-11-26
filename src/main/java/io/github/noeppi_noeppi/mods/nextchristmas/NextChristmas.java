@@ -4,13 +4,12 @@ import io.github.noeppi_noeppi.libx.mod.registration.ModXRegistration;
 import io.github.noeppi_noeppi.mods.nextchristmas.data.DataGenerators;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.Reindeer;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.ReindeerRender;
+import io.github.noeppi_noeppi.mods.nextchristmas.entities.SledgeRender;
 import io.github.noeppi_noeppi.mods.nextchristmas.network.NextNetwork;
-import net.minecraft.block.CakeBlock;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.Heightmap;
@@ -74,6 +73,7 @@ public class NextChristmas extends ModXRegistration {
     @Override
     protected void clientSetup(FMLClientSetupEvent fmlClientSetupEvent) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.reindeer, ReindeerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.sledge, SledgeRender::new);
     }
 
     @Nonnull

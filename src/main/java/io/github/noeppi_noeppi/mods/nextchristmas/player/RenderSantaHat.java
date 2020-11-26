@@ -33,6 +33,7 @@ public class RenderSantaHat extends ItemStackTileEntityRenderer {
     @Override
     public void func_239207_a_(@Nonnull ItemStack stack, @Nonnull ItemCameraTransforms.TransformType type, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer buffer, int light, int overlay) {
         if (stack.getItem() == ModItems.santaHat) {
+            matrixStack.push();
             if (type != ItemCameraTransforms.TransformType.HEAD && type != ItemCameraTransforms.TransformType.GROUND) {
                 RenderType renderType = RenderTypeLookup.func_239219_a_(stack, true);
                 IVertexBuilder vertex = ItemRenderer.getEntityGlintVertexBuilder(buffer, renderType, true, stack.hasEffect());
@@ -51,6 +52,7 @@ public class RenderSantaHat extends ItemStackTileEntityRenderer {
                         .renderModelBrightnessColor(matrixStack.getLast(), vertex, null,
                                 ModModels.getModel(HAT_MODEL), 1, 1, 1, light, OverlayTexture.NO_OVERLAY);
             }
+            matrixStack.pop();
         }
     }
 }

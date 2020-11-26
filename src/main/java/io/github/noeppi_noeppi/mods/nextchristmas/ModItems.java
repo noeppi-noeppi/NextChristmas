@@ -2,8 +2,11 @@ package io.github.noeppi_noeppi.mods.nextchristmas;
 
 import io.github.noeppi_noeppi.libx.mod.registration.ItemBase;
 import io.github.noeppi_noeppi.mods.nextchristmas.biscuit.ItemBiscuit;
+import io.github.noeppi_noeppi.mods.nextchristmas.entities.ItemSledge;
+import io.github.noeppi_noeppi.mods.nextchristmas.entities.SledgeType;
 import io.github.noeppi_noeppi.mods.nextchristmas.player.ItemSweater;
 import io.github.noeppi_noeppi.mods.nextchristmas.player.SantaHat;
+import io.github.noeppi_noeppi.mods.nextchristmas.util.EnumValues;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
@@ -25,6 +28,7 @@ public class ModItems {
     public static final ItemSweater sweaterReindeer = new ItemSweater(NextChristmas.getInstance(), new Item.Properties());
     public static final ItemSweater sweaterSnowflake = new ItemSweater(NextChristmas.getInstance(), new Item.Properties());
     public static final ItemSweater sweaterSnowman = new ItemSweater(NextChristmas.getInstance(), new Item.Properties());
+    public static final EnumValues<SledgeType, ItemSledge> sledge = new EnumValues<>(SledgeType.values(), type -> new ItemSledge(NextChristmas.getInstance(), type, new Item.Properties()));
 
     public static void register() {
         NextChristmas.getInstance().register("reindeer_spawn_egg", reindeerSpawnEgg);
@@ -40,5 +44,6 @@ public class ModItems {
         NextChristmas.getInstance().register("sweater_reindeer", sweaterReindeer);
         NextChristmas.getInstance().register("sweater_snowflake", sweaterSnowflake);
         NextChristmas.getInstance().register("sweater_snowman", sweaterSnowman);
+        NextChristmas.getInstance().register("sledge", sledge);
     }
 }

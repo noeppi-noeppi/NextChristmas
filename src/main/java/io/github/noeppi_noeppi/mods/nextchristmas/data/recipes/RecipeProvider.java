@@ -7,6 +7,7 @@ import io.github.noeppi_noeppi.mods.nextchristmas.ModItems;
 import io.github.noeppi_noeppi.mods.nextchristmas.biscuit.ItemBiscuit;
 import io.github.noeppi_noeppi.mods.nextchristmas.player.ItemSweater;
 import io.github.noeppi_noeppi.mods.nextchristmas.util.Colored;
+import io.github.noeppi_noeppi.mods.nextchristmas.util.EnumValues;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -17,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -30,7 +32,7 @@ public class RecipeProvider extends RecipeProviderBase {
     }
 
     @Override
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings({"ConstantConditions", "CodeBlock2Expr"})
     protected void registerRecipes(@Nonnull Consumer<IFinishedRecipe> consumer) {
 
         ForgeRegistries.ITEMS.getValues().stream()
@@ -127,6 +129,20 @@ public class RecipeProvider extends RecipeProviderBase {
         this.addSweaterRecipe(ModItems.sweaterReindeer, Items.RED_WOOL, Items.BLACK_WOOL, Items.BROWN_WOOL, consumer);
         this.addSweaterRecipe(ModItems.sweaterSnowflake, Items.GREEN_WOOL, Items.WHITE_WOOL, Items.GREEN_WOOL, consumer);
         this.addSweaterRecipe(ModItems.sweaterSnowman, Items.GREEN_WOOL, Items.ORANGE_WOOL, Items.WHITE_WOOL, consumer);
+
+        this.addEnumRecipes(ModItems.sledge, (result, type) -> {
+            ShapedRecipeBuilder.shapedRecipe(result)
+                    .patternLine("ppp")
+                    .patternLine("sse")
+                    .patternLine("eee")
+                    .key('p', type.material)
+                    .key('s', Items.STICK)
+                    .key('e', Tags.Items.INGOTS_IRON)
+                    .addCriterion("has_item0", hasItem(type.material))
+                    .addCriterion("has_item1", hasItem(Items.STICK))
+                    .addCriterion("has_item2", hasItem(Tags.Items.INGOTS_IRON))
+                    .build(consumer);
+        });
     }
 
     private void addBiscuitRecipes(ItemBiscuit biscuit, @Nonnull Consumer<IFinishedRecipe> consumer) {
@@ -151,6 +167,12 @@ public class RecipeProvider extends RecipeProviderBase {
     private <T extends IItemProvider> void addColoredRecipes(Colored<T> result, BiConsumer<T, DyeColor> builder) {
         for (DyeColor dc : DyeColor.values()) {
             builder.accept(result.get(dc), dc);
+        }
+    }
+
+    private <E extends Enum<E>, T extends IItemProvider> void addEnumRecipes(EnumValues<E, T> result, BiConsumer<T, E> builder) {
+        for (E enumValue : result.map.keySet()) {
+            builder.accept(result.map.get(enumValue), enumValue);
         }
     }
 
