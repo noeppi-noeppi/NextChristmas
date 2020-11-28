@@ -1,9 +1,6 @@
 package io.github.noeppi_noeppi.mods.nextchristmas.network;
 
-import io.github.noeppi_noeppi.mods.nextchristmas.ModEntities;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.Sledge;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;

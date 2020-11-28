@@ -242,6 +242,7 @@ public class RecipeProvider extends RecipeProviderBase {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private <E extends Enum<E>, T extends IItemProvider> void addEnumRecipes(EnumValues<E, T> result, BiConsumer<T, E> builder) {
         for (E enumValue : result.map.keySet()) {
             builder.accept(result.map.get(enumValue), enumValue);

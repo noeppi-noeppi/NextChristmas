@@ -1,9 +1,7 @@
 package io.github.noeppi_noeppi.mods.nextchristmas.entities;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.vector.Vector3d;
@@ -55,7 +53,7 @@ public class SledgeElytraModel extends EntityModel<Sledge> {
 
     @Override
     public void render(@Nonnull MatrixStack matrixStack, @Nonnull IVertexBuilder buffer, int light, int overlay, float red, float green, float blue, float alpha) {
-        rightWing.render(matrixStack, buffer, light, overlay, red, green, blue, alpha);
-        leftWing.render(matrixStack, buffer, light, overlay, red, green, blue, alpha);
+        this.rightWing.render(matrixStack, buffer, light, overlay, red, green, blue, alpha);
+        this.leftWing.render(matrixStack, buffer, light, overlay, red, green, blue, alpha);
     }
 }

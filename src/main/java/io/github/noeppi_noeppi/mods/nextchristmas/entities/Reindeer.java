@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.IFlinging;
 import net.minecraft.entity.monster.RavagerEntity;
-import net.minecraft.entity.monster.ZoglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;

@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 
 public class RenderItemSledge extends ItemStackTileEntityRenderer {
 
-    public static final RenderItemSledge INSTANCE = new RenderItemSledge();
+    private static final RenderItemSledge INSTANCE = new RenderItemSledge();
 
     private final LazyValue<Sledge> sledge;
 

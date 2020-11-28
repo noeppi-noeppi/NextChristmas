@@ -59,7 +59,7 @@ public class BlockColored extends Block implements Registerable {
 
     @Nonnull
     public IFormattableTextComponent getName() {
-        return new TranslationTextComponent("color.minecraft." + this.color.getString()).append(new StringTextComponent(" ")).append(new TranslationTextComponent(translationKey));
+        return new TranslationTextComponent("color.minecraft." + this.color.getString()).append(new StringTextComponent(" ")).append(new TranslationTextComponent(this.translationKey));
     }
 
     @Nonnull

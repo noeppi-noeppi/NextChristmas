@@ -53,6 +53,7 @@ public class RenderStar extends HorizontalRotatedTesr<TileEntityBase> {
         matrixStack.pop();
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void renderStarPart(@Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer buffer, int light, int overlay, float r1, float g1, float b1, float r2, float g2, float b2) {
 
         Matrix4f model = matrixStack.getLast().getMatrix();

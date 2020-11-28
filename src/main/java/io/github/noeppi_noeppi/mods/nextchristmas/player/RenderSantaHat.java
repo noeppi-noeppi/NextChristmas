@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 
 public class RenderSantaHat extends ItemStackTileEntityRenderer {
 
-    public static final RenderSantaHat INSTANCE = new RenderSantaHat();
+    private static final RenderSantaHat INSTANCE = new RenderSantaHat();
 
     public static final ResourceLocation ITEM_MODEL = new ResourceLocation(NextChristmas.getInstance().modid, "item/santa_hat_model");
     public static final ResourceLocation HAT_MODEL = new ResourceLocation(NextChristmas.getInstance().modid, "player/santa_hat");

@@ -5,14 +5,11 @@ import io.github.noeppi_noeppi.libx.block.tesr.HorizontalRotatedTesr;
 import io.github.noeppi_noeppi.libx.mod.registration.TileEntityBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 
@@ -29,8 +26,9 @@ public class RenderBakingSheet extends HorizontalRotatedTesr<TileEntityBase> {
     protected void doRender(@Nonnull TileEntityBase tile, float partialTicks, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer buffer, int light, int overlay) {
         ItemStack fillStack = this.block.getFillStack();
         if (!fillStack.isEmpty()) {
+            //noinspection IfStatementWithIdenticalBranches
             if (this.block.isBig()) {
-                matrixStack.push();// -2 +0.25 +2
+                matrixStack.push();
                 matrixStack.translate(6 / 16d, 0.5 / 16d, 9 / 16d);
                 matrixStack.rotate(new Quaternion(90, 0, -90, true));
                 matrixStack.scale(1.3f, 1.3f, 1.3f);
