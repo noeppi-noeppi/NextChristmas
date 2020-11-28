@@ -457,6 +457,25 @@ public class Sledge extends Entity {
         }
     }
 
+    @Nonnull
+    @Override
+    public ActionResultType applyPlayerInteraction(@Nonnull PlayerEntity player, @Nonnull Vector3d hit, @Nonnull Hand hand) {
+        if (player.isSneaking() && this.isChested()) {
+            if (!this.world.isRemote) {
+                this.openInventory(player);
+            }
+            return ActionResultType.CONSUME;
+        } else {
+            return super.applyPlayerInteraction(player, hit, hand);
+        }
+    }
+
+    @Nonnull
+    @Override
+    protected ITextComponent getProfessionName() {
+        return this.getSledgeType().sledgeItem.getValue().getName();
+    }
+
     @Override
     protected void updateFallState(double y, boolean onGroundIn, @Nonnull BlockState state, @Nonnull BlockPos pos) {
         if (!this.isPassenger()) {

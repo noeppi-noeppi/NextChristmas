@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 
@@ -36,44 +38,44 @@ public class RenderBakingSheet extends HorizontalRotatedTesr<TileEntityBase> {
                 matrixStack.pop();
             } else {
                 matrixStack.push();
-                matrixStack.translate(3 / 16d, 0.5 / 16d, 6.5 / 16d);
-                matrixStack.rotate(new Quaternion(90, 0, -90, true));
-                matrixStack.scale(0.55f, 0.6f, 0.55f);
+                matrixStack.translate(3.5 / 16d, 0.5 / 16d, 5.75 / 16d);
+                matrixStack.rotate(new Quaternion(90, 0, -45, true));
+                matrixStack.scale(0.5f, 0.5f, 0.6f);
                 Minecraft.getInstance().getItemRenderer().renderItem(fillStack, ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
                 matrixStack.pop();
 
                 matrixStack.push();
-                matrixStack.translate(7 / 16d, 0.5 / 16d, 6.5 / 16d);
-                matrixStack.rotate(new Quaternion(90, 0, -90, true));
-                matrixStack.scale(0.55f, 0.6f, 0.55f);
+                matrixStack.translate(7.25 / 16d, 0.5 / 16d, 5.75 / 16d);
+                matrixStack.rotate(new Quaternion(90, 0, -45, true));
+                matrixStack.scale(0.5f, 0.5f, 0.6f);
                 Minecraft.getInstance().getItemRenderer().renderItem(fillStack, ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
                 matrixStack.pop();
 
                 matrixStack.push();
-                matrixStack.translate(11 / 16d, 0.5 / 16d, 6.5 / 16d);
-                matrixStack.rotate(new Quaternion(90, 0, -90, true));
-                matrixStack.scale(0.55f, 0.6f, 0.55f);
+                matrixStack.translate(11 / 16d, 0.5 / 16d, 5.75 / 16d);
+                matrixStack.rotate(new Quaternion(90, 0, -45, true));
+                matrixStack.scale(0.5f, 0.5f, 0.6f);
                 Minecraft.getInstance().getItemRenderer().renderItem(fillStack, ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
                 matrixStack.pop();
 
                 matrixStack.push();
-                matrixStack.translate(3 / 16d, 0.5 / 16d, 11.5 / 16d);
-                matrixStack.rotate(new Quaternion(90, 0, -90, true));
-                matrixStack.scale(0.55f, 0.6f, 0.55f);
+                matrixStack.translate(3.5 / 16d, 0.5 / 16d, 10.5 / 16d);
+                matrixStack.rotate(new Quaternion(90, 0, -45, true));
+                matrixStack.scale(0.5f, 0.5f, 0.6f);
                 Minecraft.getInstance().getItemRenderer().renderItem(fillStack, ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
                 matrixStack.pop();
 
                 matrixStack.push();
-                matrixStack.translate(7 / 16d, 0.5 / 16d, 11.5 / 16d);
-                matrixStack.rotate(new Quaternion(90, 0, -90, true));
-                matrixStack.scale(0.55f, 0.6f, 0.55f);
+                matrixStack.translate(7.25 / 16d, 0.5 / 16d, 10.5 / 16d);
+                matrixStack.rotate(new Quaternion(90, 0, -45, true));
+                matrixStack.scale(0.5f, 0.5f, 0.6f);
                 Minecraft.getInstance().getItemRenderer().renderItem(fillStack, ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
                 matrixStack.pop();
 
                 matrixStack.push();
-                matrixStack.translate(11 / 16d, 0.5 / 16d, 11.5 / 16d);
-                matrixStack.rotate(new Quaternion(90, 0, -90, true));
-                matrixStack.scale(0.55f, 0.6f, 0.55f);
+                matrixStack.translate(11 / 16d, 0.5 / 16d, 10.5 / 16d);
+                matrixStack.rotate(new Quaternion(90, 0, -45, true));
+                matrixStack.scale(0.5f, 0.5f, 0.6f);
                 Minecraft.getInstance().getItemRenderer().renderItem(fillStack, ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrixStack, buffer);
                 matrixStack.pop();
             }

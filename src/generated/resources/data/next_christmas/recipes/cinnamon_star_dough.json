@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "next_christmas:flour"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "next_christmas:cinnamon"
+    },
+    {
+      "item": "next_christmas:cinnamon"
+    },
+    {
+      "item": "next_christmas:crushed_nut"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "item": "next_christmas:cinnamon_star_dough",
+    "count": 8
+  }
+}

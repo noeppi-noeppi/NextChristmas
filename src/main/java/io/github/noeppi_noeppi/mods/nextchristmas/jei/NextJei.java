@@ -1,16 +1,21 @@
 package io.github.noeppi_noeppi.mods.nextchristmas.jei;
 
+import com.google.common.collect.ImmutableList;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModBlocks;
+import io.github.noeppi_noeppi.mods.nextchristmas.ModItems;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModRecipes;
 import io.github.noeppi_noeppi.mods.nextchristmas.NextChristmas;
 import io.github.noeppi_noeppi.mods.nextchristmas.oven.ScreenOven;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
@@ -49,6 +54,11 @@ public class NextJei implements IModPlugin {
 
         registration.addRecipes(rm.getRecipesForType(ModRecipes.OVEN), OvenCategory.ID);
         registration.addRecipes(rm.getRecipesForType(ModRecipes.MILL), MillCategory.ID);
+
+        registration.addIngredientInfo(new ItemStack(ModItems.vanillaFruits), VanillaTypes.ITEM, "jei.next_christmas.description.vanilla_fruits");
+        registration.addIngredientInfo(new ItemStack(ModItems.hazelnut), VanillaTypes.ITEM, "jei.next_christmas.description.hazelnut");
+        registration.addIngredientInfo(new ItemStack(ModItems.cinnamonBark), VanillaTypes.ITEM, "jei.next_christmas.description.cinnamon_bark");
+        registration.addIngredientInfo(new ItemStack(ModBlocks.star), VanillaTypes.ITEM, "jei.next_christmas.description.star");
     }
 
     @Override

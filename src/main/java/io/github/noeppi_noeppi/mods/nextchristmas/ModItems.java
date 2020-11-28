@@ -29,6 +29,10 @@ public class ModItems {
     public static final ItemSweater sweaterSnowflake = new ItemSweater(NextChristmas.getInstance(), new Item.Properties());
     public static final ItemSweater sweaterSnowman = new ItemSweater(NextChristmas.getInstance(), new Item.Properties());
     public static final EnumValues<SledgeType, ItemSledge> sledge = new EnumValues<>(SledgeType.values(), type -> new ItemSledge(NextChristmas.getInstance(), type, new Item.Properties()));
+    public static final Item cinnamonBark = new ItemBase(NextChristmas.getInstance(), new Item.Properties());
+    public static final Item cinnamon = new ItemBase(NextChristmas.getInstance(), new Item.Properties());
+    public static final ItemBiscuit speculaas = new ItemBiscuit(NextChristmas.getInstance(), new Item.Properties().food(new Food.Builder().hunger(1).saturation(1).fastToEat().setAlwaysEdible().effect(() -> new EffectInstance(Effects.LUCK, 120, 0), 1).build()));
+    public static final ItemBiscuit cinnamonStar = new ItemBiscuit(NextChristmas.getInstance(), new Item.Properties().food(new Food.Builder().hunger(1).saturation(1).fastToEat().setAlwaysEdible().effect(() -> new EffectInstance(Effects.RESISTANCE, 120, 0), 1).build()));
 
     public static void register() {
         NextChristmas.getInstance().register("reindeer_spawn_egg", reindeerSpawnEgg);
@@ -45,5 +49,9 @@ public class ModItems {
         NextChristmas.getInstance().register("sweater_snowflake", sweaterSnowflake);
         NextChristmas.getInstance().register("sweater_snowman", sweaterSnowman);
         NextChristmas.getInstance().register("sledge", sledge);
+        NextChristmas.getInstance().register("cinnamon_bark", cinnamonBark);
+        NextChristmas.getInstance().register("cinnamon", cinnamon);
+        NextChristmas.getInstance().register("speculaas", speculaas);
+        NextChristmas.getInstance().register("cinnamon_star", cinnamonStar);
     }
 }

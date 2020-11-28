@@ -1,0 +1,10 @@
+{
+  "type": "next_christmas:next_christmas_oven",
+  "output": {
+    "item": "next_christmas:speculaas_baked_sheet"
+  },
+  "input": {
+    "item": "next_christmas:speculaas_dough_sheet"
+  },
+  "cookTime": 600
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "next_christmas:cinnamon_star_baked_sheet"
+    }
+  ],
+  "result": {
+    "item": "next_christmas:cinnamon_star",
+    "count": 6
+  }
+}

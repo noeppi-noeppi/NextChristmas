@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ddd",
+    "ddd",
+    " s "
+  ],
+  "key": {
+    "d": {
+      "item": "next_christmas:speculaas_dough"
+    },
+    "s": {
+      "item": "next_christmas:baking_sheet"
+    }
+  },
+  "result": {
+    "item": "next_christmas:speculaas_dough_sheet"
+  }
+}

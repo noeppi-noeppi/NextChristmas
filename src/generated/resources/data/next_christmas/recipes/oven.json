@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "win",
+    "ter",
+    "jam"
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:black_concrete"
+    },
+    "i": {
+      "item": "minecraft:black_concrete"
+    },
+    "n": {
+      "item": "minecraft:black_concrete"
+    },
+    "t": {
+      "item": "minecraft:white_concrete"
+    },
+    "e": {
+      "tag": "forge:glass_panes"
+    },
+    "r": {
+      "item": "minecraft:white_concrete"
+    },
+    "j": {
+      "item": "minecraft:white_concrete"
+    },
+    "a": [
+      {
+        "item": "minecraft:campfire"
+      },
+      {
+        "item": "minecraft:soul_campfire"
+      }
+    ],
+    "m": {
+      "item": "minecraft:white_concrete"
+    }
+  },
+  "result": {
+    "item": "next_christmas:oven"
+  }
+}

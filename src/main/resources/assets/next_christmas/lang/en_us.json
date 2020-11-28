@@ -5,6 +5,8 @@
   "item.next_christmas.flour": "Flour",
   "item.next_christmas.vanilla_fruits": "Vanilla Fruits",
   "item.next_christmas.vanilla": "Vanilla",
+  "item.next_christmas.cinnamon_bark": "Cinnamon Bark",
+  "item.next_christmas.cinnamon": "Cinnamon",
   "item.next_christmas.hazelnut": "Hazelnut",
   "item.next_christmas.crushed_nut": "Crushed Hazelnut",
   "item.next_christmas.santa_hat": "Santa Hat",
@@ -27,6 +29,7 @@
   "block.next_christmas.christmas_ball": "Christmas Tree Ball",
   "block.next_christmas.candle": "Candle",
   "block.next_christmas.star": "Magical Star",
+  "block.next_christmas.gingerbread_house": "Gingerbread House",
 
   "entity.next_christmas.reindeer": "Reindeer",
 
@@ -34,6 +37,10 @@
 
   "jei.next_christmas.category.oven": "Baking Recipes",
   "jei.next_christmas.category.mill": "Grain Mill Recipes",
+  "jei.next_christmas.description.vanilla_fruits": "Sometimes drops from breaking grass.",
+  "jei.next_christmas.description.hazelnut": "Sometimes drops from dark oak leaves.",
+  "jei.next_christmas.description.cinnamon_bark": "Sometimes drops when stripping oak logs with an axe.",
+  "jei.next_christmas.description.star": "Can occasionally found on christmas trees in a christmas forest.",
 
   "item.next_christmas.vanilla_crescent": "Vanilla Crescent",
   "item.next_christmas.vanilla_crescent_dough": "Vanilla Crescent Dough",
@@ -43,6 +50,16 @@
   "item.next_christmas.gingerbread": "Gingerbread",
   "item.next_christmas.gingerbread_dough": "Gingerbread Dough",
   "block.next_christmas.gingerbread_baked_sheet": "Sheet of Baked Gingerbread",
-  "block.next_christmas.gingerbread_dough_sheet": "Sheet of Gingerbread Dough"
+  "block.next_christmas.gingerbread_dough_sheet": "Sheet of Gingerbread Dough",
+
+  "item.next_christmas.speculaas": "Speculaas",
+  "item.next_christmas.speculaas_dough": "Speculaas Dough",
+  "block.next_christmas.speculaas_baked_sheet": "Sheet of Baked Speculaas",
+  "block.next_christmas.speculaas_dough_sheet": "Sheet of Speculaas Dough",
+
+  "item.next_christmas.cinnamon_star": "Cinnamon Star",
+  "item.next_christmas.cinnamon_star_dough": "Cinnamon Star Dough",
+  "block.next_christmas.cinnamon_star_baked_sheet": "Sheet of Baked Cinnamon Stars",
+  "block.next_christmas.cinnamon_star_dough_sheet": "Sheet of Cinnamon Star Dough"
 }
 

@@ -2,20 +2,24 @@ package io.github.noeppi_noeppi.mods.nextchristmas;
 
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.Sledge;
 import io.github.noeppi_noeppi.mods.nextchristmas.network.OpenSledgeGuiSerializer;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.MovementInput;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -60,18 +64,7 @@ public class EventListener {
         }
     }
 
-    @SubscribeEvent()
-    public void openSledgeInventory(PlayerInteractEvent.EntityInteractSpecific event) {
-        if (event.getTarget() instanceof Sledge && event.getPlayer().isSneaking() && ((Sledge) event.getTarget()).isChested()) {
-            event.setCanceled(true);
-            event.setCancellationResult(ActionResultType.SUCCESS);
-            if (!event.getPlayer().getEntityWorld().isRemote) {
-                ((Sledge) event.getTarget()).openInventory(event.getPlayer());
-            }
-        }
-    }
-
-    @SubscribeEvent()
+    @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public void catchPressE(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
@@ -81,6 +74,20 @@ public class EventListener {
                     if (Minecraft.getInstance().gameSettings.keyBindInventory.isPressed()) {
                         NextChristmas.getNetwork().instance.sendToServer(new OpenSledgeGuiSerializer.OpenSledgeGuiMessage());
                     }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void toolUse(BlockEvent.BlockToolInteractEvent event) {
+        if (!event.getWorld().isRemote()) {
+            if (event.getToolType() == ToolType.AXE && event.getState().getBlock() == Blocks.OAK_LOG) {
+                if (event.getWorld().getRandom().nextInt(10) == 0) {
+                    BlockPos pos = event.getPos().toImmutable().offset(Direction.byHorizontalIndex(event.getWorld().getRandom().nextInt(4)));
+                    ItemEntity ie = new ItemEntity(event.getPlayer().world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5);
+                    ie.setItem(new ItemStack(ModItems.cinnamonBark));
+                    event.getPlayer().world.addEntity(ie);
                 }
             }
         }

@@ -56,7 +56,7 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
     }
 
     public BlockBakingSheet(ModX mod, ItemStack fillStack, boolean big, Item.Properties itemProperties) {
-        super(mod, TileEntityBase.class, AbstractBlock.Properties.create(Material.IRON), withContainerAndRender(!fillStack.isEmpty(), itemProperties.maxStackSize(1)));
+        super(mod, TileEntityBase.class, AbstractBlock.Properties.create(Material.IRON), withContainerAndRender(!fillStack.isEmpty(), itemProperties));
         this.fillStack = fillStack;
         this.big = big;
     }
@@ -96,8 +96,8 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
         return this.big;
     }
 
-    private static Item.Properties withContainerAndRender(boolean addContainer, Item.Properties properties) {
-        if (addContainer) {
+    private static Item.Properties withContainerAndRender(boolean full, Item.Properties properties) {
+        if (full) {
             Item container;
             try {
                 Field field = BlockBase.class.getDeclaredField("item");
@@ -106,9 +106,9 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
             } catch (ReflectiveOperationException e) {
                 throw new IllegalStateException("Could not access ItemBase#item via reflection to set baking sheet container item.", e);
             }
-            return properties.containerItem(container).setISTER(() -> () -> ItemStackRenderer.INSTANCE);
+            return properties.maxStackSize(1).containerItem(container).setISTER(() -> () -> ItemStackRenderer.INSTANCE);
         } else {
-            return properties;
+            return properties.maxStackSize(4);
         }
     }
 }

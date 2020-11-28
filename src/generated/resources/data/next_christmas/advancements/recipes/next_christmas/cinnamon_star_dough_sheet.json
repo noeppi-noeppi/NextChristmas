@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "next_christmas:cinnamon_star_dough_sheet"
+    ]
+  },
+  "criteria": {
+    "has_item0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "next_christmas:cinnamon_star_dough"
+          }
+        ]
+      }
+    },
+    "has_item1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "next_christmas:baking_sheet"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "next_christmas:cinnamon_star_dough_sheet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item0",
+      "has_item1",
+      "has_the_recipe"
+    ]
+  ]
+}

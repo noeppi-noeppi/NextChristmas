@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "hph",
+    "psp",
+    "p p"
+  ],
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "h": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "next_christmas:grain_mill"
+  }
+}

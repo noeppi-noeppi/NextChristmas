@@ -16,6 +16,8 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -47,6 +49,7 @@ public class RecipeProvider extends RecipeProviderBase {
         new MillRecipeBuilder(ModItems.flour).setInput(Items.WHEAT).setMillClicks(2).build(consumer);
         new MillRecipeBuilder(ModItems.vanilla).setInput(ModItems.vanillaFruits).build(consumer);
         new MillRecipeBuilder(ModItems.crushedNut).setInput(ModItems.hazelnut).setMillClicks(2).build(consumer);
+        new MillRecipeBuilder(ModItems.cinnamon).setInput(ModItems.cinnamonBark).build(consumer);
 
         this.addColoredRecipes(ModBlocks.christmasBall, (result, color) -> {
             Item input = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft", color.getString() + "_glazed_terracotta"));
@@ -105,6 +108,38 @@ public class RecipeProvider extends RecipeProviderBase {
                 .addCriterion("has_item4", hasItem(Items.MILK_BUCKET))
                 .build(consumer);
 
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.speculaas.dough, 8)
+                .addIngredient(ModItems.flour)
+                .addIngredient(ModItems.flour)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.EGG)
+                .addIngredient(ModItems.cinnamon)
+                .addIngredient(ModItems.cinnamon)
+                .addIngredient(ModItems.vanilla)
+                .addIngredient(Items.MILK_BUCKET)
+                .addCriterion("has_item0", hasItem(ModItems.flour))
+                .addCriterion("has_item1", hasItem(Items.SUGAR))
+                .addCriterion("has_item2", hasItem(Items.EGG))
+                .addCriterion("has_item3", hasItem(ModItems.hazelnut))
+                .addCriterion("has_item4", hasItem(Items.MILK_BUCKET))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.cinnamonStar.dough, 8)
+                .addIngredient(ModItems.flour)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.SUGAR)
+                .addIngredient(Items.EGG)
+                .addIngredient(ModItems.cinnamon)
+                .addIngredient(ModItems.cinnamon)
+                .addIngredient(ModItems.crushedNut)
+                .addIngredient(Items.MILK_BUCKET)
+                .addCriterion("has_item0", hasItem(ModItems.flour))
+                .addCriterion("has_item1", hasItem(Items.SUGAR))
+                .addCriterion("has_item2", hasItem(Items.EGG))
+                .addCriterion("has_item3", hasItem(ModItems.hazelnut))
+                .addCriterion("has_item4", hasItem(Items.MILK_BUCKET))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.gingerbreadHouse)
                 .patternLine(" g ")
                 .patternLine("gsg")
@@ -143,6 +178,43 @@ public class RecipeProvider extends RecipeProviderBase {
                     .addCriterion("has_item2", hasItem(Tags.Items.INGOTS_IRON))
                     .build(consumer);
         });
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.oven)
+                .patternLine("win")
+                .patternLine("ter")
+                .patternLine("jam")
+                .key('w', Blocks.BLACK_CONCRETE)
+                .key('i', Blocks.BLACK_CONCRETE)
+                .key('n', Blocks.BLACK_CONCRETE)
+                .key('t', Blocks.WHITE_CONCRETE)
+                .key('e', Tags.Items.GLASS_PANES_COLORLESS)
+                .key('r', Blocks.WHITE_CONCRETE)
+                .key('j', Blocks.WHITE_CONCRETE)
+                .key('a', Ingredient.fromItems(Items.CAMPFIRE, Items.SOUL_CAMPFIRE))
+                .key('m', Blocks.WHITE_CONCRETE)
+                .addCriterion("has_item0", hasItem(Blocks.BLACK_CONCRETE))
+                .addCriterion("has_item1", hasItem(Blocks.WHITE_CONCRETE))
+                .addCriterion("has_item2", hasItem(Tags.Items.GLASS_PANES))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.grainMill)
+                .patternLine("hgh")
+                .patternLine("psp")
+                .patternLine("p p")
+                .key('p', ItemTags.PLANKS)
+                .key('h', ItemTags.WOODEN_SLABS)
+                .key('s', Items.STICK)
+                .key('g', Tags.Items.GLASS_COLORLESS)
+                .addCriterion("has_item0", hasItem(ItemTags.PLANKS))
+                .addCriterion("has_item1", hasItem(ItemTags.WOODEN_SLABS))
+                .addCriterion("has_item2", hasItem(Items.STICK))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.bakingSheet, 4)
+                .patternLine("ccc")
+                .key('c', Blocks.BLACK_CONCRETE)
+                .addCriterion("has_item0", hasItem(Blocks.BLACK_CONCRETE))
+                .build(consumer);
     }
 
     private void addBiscuitRecipes(ItemBiscuit biscuit, @Nonnull Consumer<IFinishedRecipe> consumer) {
