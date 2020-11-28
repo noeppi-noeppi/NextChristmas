@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 public class SantaHat extends ItemBase {
 
     public SantaHat(ModX mod, Properties properties) {
-        super(mod, properties.setISTER(() -> () -> RenderSantaHat.INSTANCE));
+        super(mod, properties.setISTER(() -> RenderSantaHat::get));
     }
 
     @Nullable

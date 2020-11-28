@@ -8,7 +8,6 @@ import io.github.noeppi_noeppi.mods.nextchristmas.ModItems;
 import io.github.noeppi_noeppi.mods.nextchristmas.NextChristmas;
 import io.github.noeppi_noeppi.mods.nextchristmas.entities.ItemSledge;
 import io.github.noeppi_noeppi.mods.nextchristmas.util.ItemStackRenderer;
-import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -49,7 +48,7 @@ public class ItemModelProvider extends ItemModelProviderBase {
 
     @Override
     protected void defaultBlock(ResourceLocation id, BlockItem item) {
-        if (item.getItemStackTileEntityRenderer() == ItemStackRenderer.INSTANCE) {
+        if (item.getItemStackTileEntityRenderer() == ItemStackRenderer.get()) {
             this.getBuilder(id.getPath()).parent(this.getExistingFile(TEISR_PARENT));
         } else if (item.getBlock() == ModBlocks.gingerbreadHouse) {
             this.getBuilder(id.getPath()).parent(new AlwaysExistentModelFile(new ResourceLocation(id.getNamespace(), "block/" + id.getPath() + "_0")));

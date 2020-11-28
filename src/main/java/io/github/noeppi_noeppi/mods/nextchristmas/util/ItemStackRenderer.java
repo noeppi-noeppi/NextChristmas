@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class ItemStackRenderer extends ItemStackTileEntityRenderer {
 
-    public static final ItemStackRenderer INSTANCE = new ItemStackRenderer();
+    private static final ItemStackRenderer INSTANCE = new ItemStackRenderer();
 
     private static final List<TileEntityType<?>> types = new LinkedList<>();
     private static final Map<TileEntityType<?>, LazyValue<TileEntity>> tiles = new HashMap<>();
@@ -83,5 +83,9 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
             matrixStack.rotate(Vector3f.YP.rotationDegrees(180));
             matrixStack.translate(-0.5, 0, -0.5);
         }
+    }
+
+    public static ItemStackRenderer get() {
+        return INSTANCE;
     }
 }

@@ -31,7 +31,7 @@ public class BlockStar extends BlockTE<TileEntityBase> {
     }
 
     public BlockStar(ModX mod, Properties properties, Item.Properties itemProperties) {
-        super(mod, TileEntityBase.class, properties.setLightLevel(state -> 15), itemProperties.setISTER(() -> () -> ItemStackRenderer.INSTANCE));
+        super(mod, TileEntityBase.class, properties.setLightLevel(state -> 15), itemProperties.setISTER(() -> ItemStackRenderer::get));
     }
 
     @Override

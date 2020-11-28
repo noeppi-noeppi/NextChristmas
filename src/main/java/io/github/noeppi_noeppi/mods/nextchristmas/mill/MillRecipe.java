@@ -57,7 +57,7 @@ public class MillRecipe implements IRecipe<IInventory> {
     @Nonnull
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.OVEN_SERIALIZER;
+        return ModRecipes.MILL_SERIALIZER;
     }
 
     @Nonnull

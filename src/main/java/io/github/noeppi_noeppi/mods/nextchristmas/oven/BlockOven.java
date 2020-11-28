@@ -3,7 +3,6 @@ package io.github.noeppi_noeppi.mods.nextchristmas.oven;
 import io.github.noeppi_noeppi.libx.block.DirectionShape;
 import io.github.noeppi_noeppi.libx.mod.ModX;
 import io.github.noeppi_noeppi.libx.mod.registration.BlockGUI;
-import io.github.noeppi_noeppi.mods.nextchristmas.ModBlocks;
 import io.github.noeppi_noeppi.mods.nextchristmas.util.ItemStackRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -41,11 +40,11 @@ public class BlockOven extends BlockGUI<TileOven, ContainerOven> {
     ));
 
     public BlockOven(ModX mod, Class<TileOven> teClass, ContainerType<ContainerOven> container, Properties properties) {
-        super(mod, teClass, container, properties, new Item.Properties().setISTER(() -> () -> ItemStackRenderer.INSTANCE));
+        super(mod, teClass, container, properties, new Item.Properties().setISTER(() -> ItemStackRenderer::get));
     }
 
     public BlockOven(ModX mod, Class<TileOven> teClass, ContainerType<ContainerOven> container, Properties properties, Item.Properties itemProperties) {
-        super(mod, teClass, container, properties, itemProperties.setISTER(() -> () -> ItemStackRenderer.INSTANCE));
+        super(mod, teClass, container, properties, itemProperties.setISTER(() -> ItemStackRenderer::get));
     }
 
     @Override

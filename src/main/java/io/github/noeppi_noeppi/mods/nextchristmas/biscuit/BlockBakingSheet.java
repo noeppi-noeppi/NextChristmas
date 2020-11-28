@@ -25,6 +25,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 import javax.annotation.Nonnull;
@@ -62,6 +64,7 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT) // Weird but without it it crashed event though Registration#registerClient is `onlyIn`
     public void registerClient(ResourceLocation id) {
         RenderTypeLookup.setRenderLayer(this, RenderType.getCutout());
         if (!this.fillStack.isEmpty()) {
@@ -106,7 +109,7 @@ public class BlockBakingSheet extends BlockTE<TileEntityBase> {
             } catch (ReflectiveOperationException e) {
                 throw new IllegalStateException("Could not access ItemBase#item via reflection to set baking sheet container item.", e);
             }
-            return properties.maxStackSize(1).containerItem(container).setISTER(() -> () -> ItemStackRenderer.INSTANCE);
+            return properties.setISTER(() -> ItemStackRenderer::get).maxStackSize(1).containerItem(container);
         } else {
             return properties.maxStackSize(4);
         }

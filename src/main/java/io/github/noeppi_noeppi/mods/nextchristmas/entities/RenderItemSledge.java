@@ -54,4 +54,8 @@ public class RenderItemSledge extends ItemStackTileEntityRenderer {
             matrixStack.pop();
         }
     }
+
+    public static RenderItemSledge get() {
+        return INSTANCE;
+    }
 }

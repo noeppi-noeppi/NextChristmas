@@ -27,7 +27,7 @@ public class ItemSledge extends ItemBase {
     public final SledgeType type;
 
     public ItemSledge(ModX mod, SledgeType type, Properties properties) {
-        super(mod, properties.setISTER(() -> () -> RenderItemSledge.INSTANCE).maxStackSize(1));
+        super(mod, properties.setISTER(() -> RenderItemSledge::get).maxStackSize(1));
         this.type = type;
     }
 
