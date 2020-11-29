@@ -3,7 +3,6 @@ import net.minecraftforge.gradle.common.util.RunConfig
 import org.apache.maven.artifact.versioning.ComparableVersion
 
 import java.nio.file.Files
-import java.nio.file.Paths
 
 buildscript {
     repositories {
@@ -37,7 +36,7 @@ loadSecrets()
 
 group = 'io.github.noeppi_noeppi.mods'
 archivesBaseName = 'NextChristmas'
-version = getVersion(group, archivesBaseName, "${mc_version}-${base_version}")
+version = getVersion(project, group, archivesBaseName, "${mc_version}-${base_version}")
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -144,7 +143,7 @@ publishing {
     }
     repositories {
         maven {
-            url "/var/www/maven"
+            url file('modjars').toPath().toAbsolutePath().normalize().toString()
         }
     }
 }
@@ -187,8 +186,8 @@ curseforge {
     }
 }
 
-private static String getVersion(String group, String artifact, String baseVersion) {
-    java.nio.file.Path mavenPath = Paths.get('/var/www/maven').resolve(group.replace('.', '/')).resolve(artifact)
+private static String getVersion(Project project, String group, String artifact, String baseVersion) {
+    java.nio.file.Path mavenPath = project.file('modjars').toPath().resolve(group.replace('.', '/')).resolve(artifact)
     if (!Files.isDirectory(mavenPath)) {
         return "${baseVersion}.0"
     }
