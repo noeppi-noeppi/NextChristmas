@@ -27,3 +27,9 @@ A christmas mode made for WinterJam 2020
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.next_christmas]]
+    modId="libx"
+    mandatory=true
+    versionRange="[1.16.3-1.0.5,)"
+    ordering="NONE"
+    side="BOTH"

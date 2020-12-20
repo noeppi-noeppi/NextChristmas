@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "hph",
+    "hgh",
     "psp",
     "p p"
   ],
@@ -14,6 +14,9 @@
     },
     "s": {
       "item": "minecraft:stick"
+    },
+    "g": {
+      "tag": "forge:glass/colorless"
     }
   },
   "result": {

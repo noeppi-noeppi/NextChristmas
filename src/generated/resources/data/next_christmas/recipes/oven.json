@@ -19,7 +19,7 @@
       "item": "minecraft:white_concrete"
     },
     "e": {
-      "tag": "forge:glass_panes"
+      "tag": "forge:glass_panes/colorless"
     },
     "r": {
       "item": "minecraft:white_concrete"

@@ -98,13 +98,13 @@ public class RecipeProvider extends RecipeProviderBase {
                 .addIngredient(Items.SUGAR)
                 .addIngredient(Items.EGG)
                 .addIngredient(Items.EGG)
-                .addIngredient(ModItems.hazelnut)
-                .addIngredient(ModItems.hazelnut)
+                .addIngredient(ModItems.crushedNut)
+                .addIngredient(ModItems.crushedNut)
                 .addIngredient(Items.MILK_BUCKET)
                 .addCriterion("has_item0", hasItem(ModItems.flour))
                 .addCriterion("has_item1", hasItem(Items.SUGAR))
                 .addCriterion("has_item2", hasItem(Items.EGG))
-                .addCriterion("has_item3", hasItem(ModItems.hazelnut))
+                .addCriterion("has_item3", hasItem(ModItems.crushedNut))
                 .addCriterion("has_item4", hasItem(Items.MILK_BUCKET))
                 .build(consumer);
 

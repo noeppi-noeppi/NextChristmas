@@ -2,6 +2,7 @@ package io.github.noeppi_noeppi.mods.nextchristmas.mill;
 
 import com.google.gson.JsonObject;
 import io.github.noeppi_noeppi.libx.crafting.recipe.RecipeHelper;
+import io.github.noeppi_noeppi.mods.nextchristmas.ModBlocks;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModRecipes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -85,6 +86,12 @@ public class MillRecipe implements IRecipe<IInventory> {
     @Override
     public IRecipeType<?> getType() {
         return ModRecipes.MILL;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getIcon() {
+        return new ItemStack(ModBlocks.grainMill);
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<MillRecipe> {
