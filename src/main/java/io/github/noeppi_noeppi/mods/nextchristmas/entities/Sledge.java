@@ -1,6 +1,7 @@
 package io.github.noeppi_noeppi.mods.nextchristmas.entities;
 
 import io.github.noeppi_noeppi.libx.inventory.VanillaWrapper;
+import io.github.noeppi_noeppi.mods.nextchristmas.ModEntities;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModTags;
 import io.github.noeppi_noeppi.mods.nextchristmas.NextChristmas;
 import net.minecraft.block.BlockState;
@@ -23,9 +24,11 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -65,7 +68,11 @@ public class Sledge extends Entity {
     private int status;
 
     private final ItemStackHandler inventory = new ItemStackHandler(27);
-
+    
+    public Sledge(@Nonnull World world) {
+        this(ModEntities.sledge, world);
+    }
+    
     public Sledge(EntityType<? extends Sledge> type, @Nonnull World world) {
         super(type, world);
         this.preventEntitySpawning = true;
@@ -473,7 +480,7 @@ public class Sledge extends Entity {
     @Nonnull
     @Override
     protected ITextComponent getProfessionName() {
-        return this.getSledgeType().sledgeItem.getValue().getName();
+        return new TranslationTextComponent(this.getSledgeType().sledgeItem.getValue().getTranslationKey());
     }
 
     @Override
@@ -493,7 +500,7 @@ public class Sledge extends Entity {
     @Nonnull
     @Override
     public IPacket<?> createSpawnPacket() {
-        return NextChristmas.getNetwork().getSledgeSpawnPacket(this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Nonnull

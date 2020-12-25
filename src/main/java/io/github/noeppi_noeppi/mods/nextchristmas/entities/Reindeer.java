@@ -1,5 +1,6 @@
 package io.github.noeppi_noeppi.mods.nextchristmas.entities;
 
+import io.github.noeppi_noeppi.mods.nextchristmas.ModEntities;
 import io.github.noeppi_noeppi.mods.nextchristmas.ModWorldGen;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -18,8 +19,12 @@ import java.util.Random;
 
 public class Reindeer extends CreatureEntity {
 
-    public Reindeer(EntityType<? extends CreatureEntity> type, World worldIn) {
-        super(type, worldIn);
+    public Reindeer(@Nonnull World world) {
+        this(ModEntities.reindeer, world);
+    }
+    
+    public Reindeer(EntityType<Reindeer> type, World world) {
+        super(type, world);
     }
 
     protected void registerGoals() {
