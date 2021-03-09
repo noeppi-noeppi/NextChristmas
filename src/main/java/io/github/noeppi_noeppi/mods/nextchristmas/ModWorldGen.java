@@ -28,9 +28,9 @@ public class ModWorldGen {
                             .copy()
             ).setEffects(
                     new BiomeAmbience.Builder()
-                            .setWaterColor(4159204)
-                            .setWaterFogColor(329011)
-                            .setFogColor(12638463)
+                            .setWaterColor(0x3f76e4)
+                            .setWaterFogColor(0x050533)
+                            .setFogColor(0xc0d8ff)
                             .withSkyColor(BiomeMaker.getSkyColorWithTemperatureModifier(0.0F))
                             .build()
             ).withGenerationSettings(

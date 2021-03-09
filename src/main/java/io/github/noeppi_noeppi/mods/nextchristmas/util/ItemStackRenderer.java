@@ -12,11 +12,13 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.common.util.Constants;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -29,7 +31,8 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
     private static final ItemStackRenderer INSTANCE = new ItemStackRenderer();
 
     private static final List<TileEntityType<?>> types = new LinkedList<>();
-    private static final Map<TileEntityType<?>, LazyValue<TileEntity>> tiles = new HashMap<>();
+    private static final Map<TileEntityType<?>, Pair<LazyValue<TileEntity>, Boolean>> tiles = new HashMap<>();
+    private static final Map<TileEntityType<?>, CompoundNBT> defaultTags = new HashMap<>();
 
     private ItemStackRenderer() {
         super();
@@ -37,7 +40,12 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
 
     public static <T extends TileEntity> void addRenderTile(TileEntityType<T> teType) {
         types.add(teType);
-        tiles.put(teType, new LazyValue<>(teType::create));
+        tiles.put(teType, Pair.of(new LazyValue<>(teType::create), false));
+    }
+    
+    public static <T extends TileEntity> void addRenderTile(TileEntityType<T> teType, boolean readBlockEntityTag) {
+        types.add(teType);
+        tiles.put(teType, Pair.of(new LazyValue<>(teType::create), readBlockEntityTag));
     }
 
     @Override
@@ -46,19 +54,35 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
         if (block != Blocks.AIR) {
             for (TileEntityType<?> teType : types) {
                 if (teType.isValidBlock(block)) {
-                    TileEntity tile = tiles.get(teType).getValue();
+                    Pair<LazyValue<TileEntity>, Boolean> pair = tiles.get(teType);
+                    BlockState state = block.getDefaultState();
+                    TileEntity tile = pair.getLeft().getValue();
+                    
                     TileEntityRenderer<TileEntity> renderer = TileEntityRendererDispatcher.instance.getRenderer(tile);
                     if (renderer != null) {
+
+                        if (pair.getRight()) {
+                            if (!defaultTags.containsKey(teType)) {
+                                setWorldPosState(tile, state);
+                                defaultTags.put(teType, tile.write(new CompoundNBT()));
+                            }
+                            
+                            CompoundNBT nbt = stack.getTag();
+                            setWorldPosState(tile, state);
+                            tile.read(state, defaultTags.get(teType));
+                            if (nbt != null && nbt.contains("BlockEntityTag", Constants.NBT.TAG_COMPOUND)) {
+                                CompoundNBT blockTag = nbt.getCompound("BlockEntityTag");
+                                tile.read(state, blockTag);
+                            }
+                        }
+                        
                         if (Minecraft.getInstance().world != null) {
                             tile.setWorldAndPos(Minecraft.getInstance().world, BlockPos.ZERO);
                         }
-                        tile.cachedBlockState = block.getDefaultState();
+                        tile.cachedBlockState = state;
 
                         matrixStack.push();
-
-                        rotateView(matrixStack, type);
-
-                        BlockState state = block.getDefaultState();
+                        
                         if (state.getRenderType() != BlockRenderType.ENTITYBLOCK_ANIMATED) {
                             //noinspection deprecation
                             Minecraft.getInstance().getBlockRendererDispatcher().renderBlock(block.getDefaultState(), matrixStack, buffer, light, overlay);
@@ -74,15 +98,11 @@ public class ItemStackRenderer extends ItemStackTileEntityRenderer {
         }
     }
 
-    public static void rotateView(MatrixStack matrixStack, ItemCameraTransforms.TransformType type) {
-        if (type == ItemCameraTransforms.TransformType.GUI || type == ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND
-                || type == ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND
-                || type == ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND
-                || type == ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND) {
-            matrixStack.translate(0.5, 0, 0.5);
-            matrixStack.rotate(Vector3f.YP.rotationDegrees(180));
-            matrixStack.translate(-0.5, 0, -0.5);
+    private static void setWorldPosState(TileEntity tile, BlockState state) {
+        if (Minecraft.getInstance().world != null) {
+            tile.setWorldAndPos(Minecraft.getInstance().world, BlockPos.ZERO);
         }
+        tile.cachedBlockState = state;
     }
 
     public static ItemStackRenderer get() {
