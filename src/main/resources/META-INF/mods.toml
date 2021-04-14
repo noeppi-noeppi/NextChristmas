@@ -30,6 +30,6 @@ A christmas mode made for WinterJam 2020
 [[dependencies.next_christmas]]
     modId="libx"
     mandatory=true
-    versionRange="[1.16.3-1.0.5,)"
+    versionRange="[1.16.3-1.0.39,)"
     ordering="NONE"
     side="BOTH"

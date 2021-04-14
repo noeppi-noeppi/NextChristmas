@@ -14,7 +14,7 @@ public class BlockTagProvider extends BlockTagProviderBase {
 	}
 
 	@Override
-	protected void registerTags() {
+	protected void setup() {
 		this.getOrCreateBuilder(ModTags.Blocks.sledgeSurface).add(
 				Blocks.SNOW, Blocks.SNOW_BLOCK, Blocks.ICE, Blocks.PACKED_ICE,
 				Blocks.BLUE_ICE, Blocks.FROSTED_ICE
